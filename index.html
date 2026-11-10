@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="pt-PT">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>POO em C# · Apresentação</title>
+<link rel="icon" href="assets/images/logo.svg">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<header><button id="mb" aria-label="Menu">☰ Menu</button><span class="logo">POO · C#</span><span class="sp"></span><span class="hint">Setas ← → para navegar</span></header>
+<nav id="menu"></nav>
+<div id="prog"></div>
+
+<main>
+
+<!-- 1 Início -->
+<section class="slide on" data-t="Início"><div class="in center">
+<span class="tag">Projeto escolar · C# · .NET</span>
+<h1>Programação Orientada a Objetos em C#</h1>
+<p class="big" style="font-size:1.25rem">Classes, objetos e os quatro pilares da POO</p>
+<p>Usa as setas do teclado ou o botão <b>▶ Apresentar</b> em baixo.</p>
+</div></section>
+
+<!-- 2 Introdução -->
+<section class="slide" data-t="Introdução"><div class="in">
+<h2>1 · <span>Introdução</span></h2>
+<div class="grid3">
+<div class="card"><span class="ic">⌨️</span><h3>O que é programação?</h3><p>Escrever instruções para o computador resolver problemas.</p></div>
+<div class="card"><span class="ic">🧩</span><h3>O que é a POO?</h3><p>Organizar o código em <b>objetos</b>, que juntam dados e comportamentos.</p></div>
+<div class="card"><span class="ic">🛠️</span><h3>Para que serve?</h3><p>Criar programas organizados, reutilizáveis e fáceis de manter.</p></div>
+</div>
+<p>A POO é importante porque permite <b>trabalhar em equipa</b> e fazer crescer o software sem o código se tornar um caos.</p>
+</div></section>
+
+<!-- 3 C# -->
+<section class="slide" data-t="O que é C#?"><div class="in">
+<h2>2 · <span>O que é o C#?</span></h2>
+<div class="cols">
+<div>
+<p>O <b>C#</b> (lê-se «C sharp») é uma linguagem moderna criada pela Microsoft no início dos anos 2000.</p>
+<ul><li>Orientada a objetos e fortemente tipada</li><li>Sintaxe clara e segura</li><li>Multiplataforma com o .NET</li></ul>
+<div class="chips" style="margin-top:10px"><span class="chip">Web</span><span class="chip">Desktop</span><span class="chip">Jogos (Unity)</span><span class="chip">Móvel</span><span class="chip">Cloud</span></div>
+</div>
+<div class="diag">
+<div class="box">Código C#<small>ficheiros .cs</small></div><span class="arr">▼</span>
+<div class="box">Compilador<small>transforma o código</small></div><span class="arr">▼</span>
+<div class="box cls">Plataforma .NET<small>executa o programa</small></div><span class="arr">▼</span>
+<div class="box">Aplicação a funcionar</div>
+</div>
+</div>
+</div></section>
+
+<!-- 4 Pilares -->
+<section class="slide" data-t="Os quatro pilares"><div class="in">
+<h2>3 · <span>Os quatro pilares da POO</span></h2>
+<p>Clica num cartão para ver cada pilar em detalhe.</p>
+<div class="grid4">
+<div class="card" data-go="4"><span class="ic">🔒</span><h3>Encapsulamento</h3><p>Protege os dados do objeto.</p></div>
+<div class="card" data-go="5"><span class="ic">🧬</span><h3>Herança</h3><p>Reutiliza classes existentes.</p></div>
+<div class="card" data-go="6"><span class="ic">🎭</span><h3>Polimorfismo</h3><p>Mesma chamada, resultados diferentes.</p></div>
+<div class="card" data-go="7"><span class="ic">🧠</span><h3>Abstração</h3><p>Mostra só o essencial.</p></div>
+</div>
+</div></section>
+
+<!-- 5 Encapsulamento -->
+<section class="slide" data-t="Encapsulamento"><div class="in">
+<h2>🔒 <span>Encapsulamento</span></h2>
+<div class="cols">
+<div>
+<h3>O que é?</h3><p>Esconder o estado interno do objeto e só permitir alterações através de métodos ou propriedades.</p>
+<h3 style="margin-top:8px">Para que serve?</h3><p>Evita valores inválidos e protege os dados.</p>
+<h3 style="margin-top:8px">Explicação</h3>
+<ul><li><b>_saldo</b> é <b>private</b>: ninguém o altera de fora</li><li><b>Saldo</b> só permite ler</li><li><b>Depositar</b> valida antes de alterar</li></ul>
+</div>
+<div>
+<pre>public class Conta
+{
+    private decimal _saldo;
+    public decimal Saldo => _saldo;
+
+    public void Depositar(decimal valor)
+    {
+        if (valor &lt;= 0)
+            throw new ArgumentException("Valor inválido");
+        _saldo += valor;
+    }
+}</pre>
+<div class="demo"><div class="row"><input id="val" type="number" value="50"><button id="dep" class="pri">Depositar</button><button id="hack">Alterar _saldo diretamente</button></div><div id="eout" class="out">Experimenta: valor positivo, negativo ou zero.</div></div>
+</div>
+</div>
+</div></section>
+
+<!-- 6 Herança -->
+<section class="slide" data-t="Herança"><div class="in">
+<h2>🧬 <span>Herança</span></h2>
+<div class="cols">
+<div>
+<h3>O que é?</h3><p>Uma classe <b>derivada</b> herda propriedades e métodos de uma classe <b>base</b>.</p>
+<h3 style="margin-top:8px">Como funciona?</h3><p>Usa-se <b>:</b> na declaração. Relação do tipo «é um»: um Carro <b>é um</b> Veículo.</p>
+<div class="diag" style="margin-top:12px"><div class="box cls">Veiculo<small>Marca · Modelo</small></div><span class="arr">▲ ▲</span><div class="row2"><div class="box">Carro</div><div class="box">Mota</div></div></div>
+</div>
+<div>
+<pre>public class Veiculo
+{
+    public string Marca { get; set; }
+    public void Ligar() =>
+        Console.WriteLine("Motor ligado");
+}
+
+public class Carro : Veiculo
+{
+    public int Portas { get; set; }
+}
+
+var c = new Carro { Marca = "Toyota", Portas = 5 };
+c.Ligar(); // método herdado</pre>
+</div>
+</div>
+</div></section>
+
+<!-- 7 Polimorfismo -->
+<section class="slide" data-t="Polimorfismo"><div class="in">
+<h2>🎭 <span>Polimorfismo</span></h2>
+<div class="cols">
+<div>
+<h3>O que é?</h3><p>Objetos diferentes respondem à mesma chamada de formas diferentes.</p>
+<h3 style="margin-top:8px">Como funciona?</h3>
+<ul><li><b>virtual</b> na classe base: permite redefinir</li><li><b>override</b> na derivada: nova versão</li><li>O método executado depende do <b>tipo real</b> do objeto</li></ul>
+<div class="demo" style="margin-top:12px"><div class="row"><button data-a="Cão">🐶 Cão</button><button data-a="Gato">🐱 Gato</button><button data-a="Vaca">🐮 Vaca</button></div><div id="pout" class="out">Escolhe um animal.</div></div>
+</div>
+<div>
+<pre>public class Animal
+{
+    public virtual string EmitirSom() => "...";
+}
+
+public class Cao : Animal
+{
+    public override string EmitirSom() => "Au au!";
+}
+
+public class Gato : Animal
+{
+    public override string EmitirSom() => "Miau!";
+}
+
+Animal a = new Gato();
+Console.WriteLine(a.EmitirSom()); // Miau!</pre>
+</div>
+</div>
+</div></section>
+
+<!-- 8 Abstração -->
+<section class="slide" data-t="Abstração"><div class="in">
+<h2>🧠 <span>Abstração</span></h2>
+<div class="cols">
+<div>
+<h3>O que é?</h3><p>Mostrar apenas o que é essencial e esconder os detalhes.</p>
+<h3 style="margin-top:8px">Porque é importante?</h3><p>Simplifica o uso das classes e define regras comuns.</p>
+<ul style="margin-top:8px"><li><b>abstract class</b>: não pode ser instanciada</li><li><b>abstract</b> método: sem corpo, as derivadas são obrigadas a implementá-lo</li></ul>
+<div class="diag" style="margin-top:10px"><div class="box cls">Forma (abstrata)<small>Area()</small></div><span class="arr">▲ ▲</span><div class="row2"><div class="box">Circulo</div><div class="box">Retangulo</div></div></div>
+</div>
+<div>
+<pre>public abstract class Forma
+{
+    public abstract double Area();
+
+    public void Mostrar() =>
+        Console.WriteLine($"Área: {Area():F2}");
+}
+
+public class Circulo : Forma
+{
+    public double Raio { get; set; }
+    public Circulo(double raio) => Raio = raio;
+
+    public override double Area() =>
+        Math.PI * Raio * Raio;
+}
+
+// var f = new Forma(); // ERRO: classe abstrata
+new Circulo(2).Mostrar(); // Área: 12.57</pre>
+</div>
+</div>
+</div></section>
+
+<!-- 9 Classes e Objetos -->
+<section class="slide" data-t="Classes e Objetos"><div class="in">
+<h2>4 · <span>Classes e Objetos</span></h2>
+<div class="cols">
+<div>
+<p><b>Classe</b> = molde. <b>Objeto</b> = instância criada a partir do molde.</p>
+<div class="chips"><span class="chip">Propriedades: dados</span><span class="chip">Métodos: ações</span><span class="chip">Construtor: cria o objeto</span></div>
+<div class="diag" style="margin-top:12px">
+<div class="box cls">class Carro<small>Marca · Modelo · Velocidade · Acelerar()</small></div><span class="arr">▼ new ▼</span>
+<div class="row2"><div class="box">c1<small>Toyota Yaris</small></div><div class="box">c2<small>Honda Civic</small></div></div></div>
+<div class="demo" style="margin-top:12px"><div class="row"><b>c1.Velocidade = <span id="vel">0</span> km/h</b></div><div class="bar"><i id="vbar"></i></div><div class="row"><button id="acc" class="pri">c1.Acelerar(20)</button><button id="brk">Travar</button></div></div>
+</div>
+<div>
+<pre>public class Carro
+{
+    public string Marca { get; set; }
+    public string Modelo { get; set; }
+    public int Velocidade { get; private set; }
+
+    public Carro(string marca, string modelo)
+    {
+        Marca = marca;
+        Modelo = modelo;
+    }
+
+    public void Acelerar(int kmh) => Velocidade += kmh;
+}
+
+var c1 = new Carro("Toyota", "Yaris");
+var c2 = new Carro("Honda", "Civic");
+c1.Acelerar(20);</pre>
+</div>
+</div>
+</div></section>
+
+<!-- 10 Exemplo prático -->
+<section class="slide" data-t="Exemplo prático"><div class="in">
+<h2>5 · <span>Gestão de veículos</span></h2>
+<div class="tabwrap">
+<div class="tabs"><button class="on">1 · Classe base</button><button>2 · Classes derivadas</button><button>3 · Programa</button></div>
+<div class="pane on">
+<pre>public class Veiculo
+{
+    public string Marca { get; }
+    public string Modelo { get; }
+    private int _velocidade;              // encapsulamento
+    public int Velocidade => _velocidade;
+
+    public Veiculo(string marca, string modelo)   // construtor
+    {
+        Marca = marca;
+        Modelo = modelo;
+    }
+
+    public void Acelerar(int kmh)
+    {
+        if (kmh &lt;= 0) return;
+        _velocidade += kmh;
+    }
+
+    public virtual string Descrever() =>
+        $"{Marca} {Modelo} a {Velocidade} km/h";
+}</pre>
+<p>Dados protegidos com <b>private</b>, construtor para criar o objeto e um método <b>virtual</b> que as derivadas podem mudar.</p>
+</div>
+<div class="pane">
+<pre>public class Carro : Veiculo                  // herança
+{
+    public Carro(string marca, string modelo)
+        : base(marca, modelo) { }
+
+    public override string Descrever() =>     // polimorfismo
+        $"Carro: {base.Descrever()}";
+}
+
+public class Mota : Veiculo
+{
+    public Mota(string marca, string modelo)
+        : base(marca, modelo) { }
+
+    public override string Descrever() =>
+        $"Mota: {base.Descrever()}";
+}</pre>
+<p><b>Carro</b> e <b>Mota</b> herdam tudo de <b>Veiculo</b> e redefinem apenas <b>Descrever()</b>.</p>
+</div>
+<div class="pane">
+<pre>var frota = new List&lt;Veiculo&gt;
+{
+    new Carro("Toyota", "Yaris"),
+    new Mota("Yamaha", "MT-07")
+};
+
+foreach (var v in frota)
+{
+    v.Acelerar(60);
+    Console.WriteLine(v.Descrever());
+}
+
+// Carro: Toyota Yaris a 60 km/h
+// Mota: Yamaha MT-07 a 60 km/h</pre>
+<p>A lista guarda <b>Veiculo</b>, mas cada objeto usa a sua própria versão de <b>Descrever()</b>.</p>
+</div>
+</div>
+</div></section>
+
+<!-- 11 Vantagens/Desvantagens -->
+<section class="slide" data-t="Vantagens e desvantagens"><div class="in">
+<h2>6 · <span>Vantagens e desvantagens</span></h2>
+<div class="cols">
+<div class="grid3" style="grid-template-columns:1fr 1fr">
+<div class="card good"><h3>♻️ Reutilização</h3><p>Herança evita repetir código.</p></div>
+<div class="card good"><h3>🗂️ Organização</h3><p>Cada classe tem o seu papel.</p></div>
+<div class="card good"><h3>🔧 Manutenção</h3><p>Alterar uma classe afeta pouco o resto.</p></div>
+<div class="card good"><h3>🧱 Modularidade</h3><p>Partes independentes e testáveis.</p></div>
+</div>
+<div class="grid3" style="grid-template-columns:1fr">
+<div class="card bad"><h3>📚 Complexidade inicial</h3><p>Há muitos conceitos para aprender no início.</p></div>
+<div class="card bad"><h3>🌀 Excesso de abstração</h3><p>Demasiadas classes podem complicar programas simples.</p></div>
+</div>
+</div>
+</div></section>
+
+<!-- 12 Onde é usada -->
+<section class="slide" data-t="Onde é usada?"><div class="in">
+<h2>7 · <span>Onde é utilizada?</span></h2>
+<div class="grid3">
+<div class="card"><span class="ic">📱</span><h3>Aplicações</h3><p>Apps móveis e programas do dia a dia.</p></div>
+<div class="card"><span class="ic">🎮</span><h3>Videojogos com Unity</h3><p>Jogadores, inimigos e itens são objetos.</p></div>
+<div class="card"><span class="ic">🏢</span><h3>Sistemas empresariais</h3><p>Faturação, clientes e stocks.</p></div>
+<div class="card"><span class="ic">🖥️</span><h3>Aplicações desktop</h3><p>Janelas e botões são objetos.</p></div>
+<div class="card"><span class="ic">🌐</span><h3>Aplicações web</h3><p>Com ASP.NET, para sites e serviços.</p></div>
+<div class="card"><span class="ic">📋</span><h3>Sistemas de gestão</h3><p>Escolas, hospitais e armazéns.</p></div>
+</div>
+</div></section>
+
+<!-- 13 Quiz -->
+<section class="slide" data-t="Questionário"><div class="in">
+<h2>✅ <span>Questionário final</span></h2>
+<div id="quiz"></div>
+</div></section>
+
+<!-- 14 Conclusão -->
+<section class="slide" data-t="Conclusão"><div class="in center">
+<h2>8 · <span>Conclusão</span></h2>
+<div class="chips" style="justify-content:center"><span class="chip">Classes e objetos</span><span class="chip">Encapsulamento</span><span class="chip">Herança</span><span class="chip">Polimorfismo</span><span class="chip">Abstração</span></div>
+<p style="max-width:700px">A POO organiza o código em partes pequenas e reutilizáveis. Em C#, é a base para criar software moderno, seguro e fácil de evoluir.</p>
+<h1 class="big">Obrigado! Perguntas?</h1>
+</div></section>
+
+</main>
+
+<footer>
+<button id="prev">‹ Anterior</button><span id="cnt"></span><span class="sp"></span>
+<button id="full">▶ Apresentar</button><button id="next" class="pri">Seguinte ›</button>
+</footer>
+
+<script src="js/script.js"></script>
+</body>
+</html>
